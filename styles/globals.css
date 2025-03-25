@@ -259,7 +259,7 @@ button:hover, input[type="button"]:hover {
   }
   .inputRow .quantity .input-quantity,
   .inputRow .price .input-price {
-      width: 66.6%;
+      width: 30%;
   }
 
 
