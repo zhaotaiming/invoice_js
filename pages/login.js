@@ -1,60 +1,41 @@
 // pages/login.js
-import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
-export default function LoginPage() {
+export default function Login() {
   const router = useRouter();
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
-  const correctPassword = 'weiwei'; // 可以自己修改密码
+  const correctPassword = '11'; // 你可以自定义密码
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // 阻止表单默认刷新
     if (password === correctPassword) {
-      sessionStorage.setItem('loggedIn', 'true'); // 登录标记
-      router.push('/'); // 跳转到主页
+      sessionStorage.setItem('loggedIn', 'true');
+      router.replace('/');
     } else {
-      setError('密码错误，请重试！');
+      alert('密码错误，请重试');
     }
   };
 
   return (
     <div style={{ padding: 40, textAlign: 'center' }}>
-      <h2>🔐認証</h2>
+      <h2>🔒 密码页</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="password"
           placeholder="请输入密码"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          style={{ padding: '8px', fontSize: '16px' }}
+          style={{ padding: '10px', width: '200px' }}
         />
         <br /><br />
-        <button type="submit" style={{ padding: '10px 20px' }}>
-          登录
+        <button type="submit" style={{ padding: '10px 20px' }}>登录</button>
+        <br /><br />
+        <button type="button" onClick={() => window.location.href = 'https://nissin-shouji.vercel.app/'}>
+          ホームページに戻る
         </button>
       </form>
-
-            {/* 🔙 返回按钮 */}
-      <button
-        onClick={() => window.location.href = 'https://nissin-shouji.vercel.app/'}
-        style={{
-          marginTop: '20px',
-          padding: '10px 20px',
-          backgroundColor: '#888',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer'
-        }}
-      >
-        ホームページに戻る
-      </button>
-
-
-
-      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 }

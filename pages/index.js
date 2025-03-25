@@ -7,33 +7,28 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // 💡 每次访问首页时清除 sessionStorage 登录状态
-      sessionStorage.removeItem('loggedIn');
+    setIsClient(true);
 
-      const isLoggedIn = sessionStorage.getItem('loggedIn');
+    if (typeof window !== 'undefined') {
+      const isLoggedIn = sessionStorage.getItem('loggedIn'); // ✅ 改成 sessionStorage
       if (isLoggedIn !== 'true') {
         router.push('/login');
         return;
       }
 
-      // ✅ 登录通过才执行字体加载和表格行添加
       const interval = setInterval(() => {
         if (window.addRows && window.loadFontData) {
-          window.loadFontData(); // 加载字体
-          window.addRows(10);    // 添加表格行
-          clearInterval(interval); // 加载完成后清除轮询
+          window.loadFontData();
+          window.addRows(10);
+          clearInterval(interval);
         }
       }, 100);
 
       return () => clearInterval(interval);
     }
-
-    setIsClient(true);
   }, []);
 
   if (!isClient) return null;
-
 
   return (
     <>
