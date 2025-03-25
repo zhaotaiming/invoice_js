@@ -38,7 +38,7 @@ export default function LoginPage() {
 
             {/* 🔙 返回按钮 */}
       <button
-        onClick={() => window.location.href = 'https://www.4399.com/'}
+        onClick={() => window.location.href = 'https://nissin-shouji.vercel.app/'}
         style={{
           marginTop: '20px',
           padding: '10px 20px',
