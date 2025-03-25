@@ -12,7 +12,7 @@ export default function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === correctPassword) {
-      localStorage.setItem('loggedIn', 'true'); // 登录标记
+      sessionStorage.setItem('loggedIn', 'true'); // 登录标记
       router.push('/'); // 跳转到主页
     } else {
       setError('密码错误，请重试！');
